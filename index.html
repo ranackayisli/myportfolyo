@@ -122,6 +122,26 @@ footer{background:#000;color:#fff}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;padding-bottom:24px;color:var(--smoke)}
 footer button{background:none;border:0;color:var(--mint);font:inherit;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
 
+
+/* stacking project cards */
+.stackwrap{position:relative;display:flex;flex-direction:column;gap:24px;padding-bottom:40px}
+.scard{position:sticky;top:calc(24px + env(safe-area-inset-top,0px) + var(--i) * 18px);min-height:min(72vh,560px);border-radius:32px;padding:clamp(24px,4vw,48px);display:grid;grid-template-columns:1.2fr 1fr;gap:40px;transform-origin:50% 0;will-change:transform;background:var(--card);color:var(--text)}
+.scard.dark{background:var(--inv);color:var(--inv-text)}
+.scard-l{display:flex;flex-direction:column;justify-content:space-between;gap:40px}
+.scard-top{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.scard .display{font-size:clamp(56px,8.5vw,120px)}
+.scard-r{display:flex;flex-direction:column;justify-content:flex-end;gap:24px}
+.scard-r p{margin:0;font-size:20px;line-height:1.3;color:var(--sub);max-width:38ch}
+.scard.dark .scard-r p{color:var(--smoke)}
+.chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.chips li{border:1.5px solid currentColor;border-radius:64px;padding:6px 14px;font-size:14px;font-weight:500}
+.scard .count{align-self:flex-end;color:var(--muted)}
+.scard .shade{position:absolute;inset:0;border-radius:inherit;background:#000;opacity:0;pointer-events:none}
+@media (max-width:760px){
+  .scard{grid-template-columns:1fr;min-height:min(78vh,620px);top:calc(16px + env(safe-area-inset-top,0px) + var(--i) * 12px);gap:24px}
+  .scard-r p{font-size:17px}
+}
+
 @media (max-width:960px){
   .nav{grid-template-columns:1fr auto;height:auto;padding:24px 0}
   .pill{grid-column:1/-1;grid-row:2;justify-self:start;overflow-x:auto;max-width:100%}
@@ -197,42 +217,72 @@ footer button{background:none;border:0;color:var(--mint);font:inherit;cursor:poi
       <h2 class="display">Projeler</h2>
       <p>2023'ten bugüne desteklenen araştırma projeleri ve takım çalışmaları.</p>
     </div>
-    <div class="grid">
-      <article class="card">
-        <div class="top"><span class="tag">TÜSEB A1</span><span class="mono">2026 – devam</span></div>
-        <h3 class="h2">OmniGate</h3>
-        <p>Yürüme örüntülerinden yürüme bozukluklarını tespit eden bir sağlık takip uygulaması. Yapay zekâ entegrasyonu, veri işleme ve web sitesi tasarımını yürütüyorum.</p>
-        <div class="foot mono">YZ lideri · Veri · Web</div>
+    <div class="stackwrap">
+      <article class="scard light" style="--i:0">
+        <div class="scard-l">
+          <div class="scard-top"><span class="tag">TÜSEB A1</span><span class="mono">2026 – devam</span></div>
+          <h3 class="display">OmniGate</h3>
+        </div>
+        <div class="scard-r">
+          <p>Yürüme örüntülerinden yürüme bozukluklarını tespit eden bir sağlık takip uygulaması. Yapay zekâ entegrasyonu, veri işleme ve web sitesi tasarımını yürütüyorum.</p>
+          <ul class="chips"><li>YZ lideri</li><li>Veri işleme</li><li>Web tasarımı</li></ul>
+          <span class="mono count">01 / 06</span>
+        </div>
       </article>
-      <article class="card dark">
-        <div class="top"><span class="tag">TEKNOFEST</span><span class="mono">2025 – devam</span></div>
-        <h3 class="h2">Amfibi drone</h3>
-        <p>HALIC-X takımıyla geliştirdiğimiz, havada ve suda hareket edebilen hibrit bir drone. Sistem entegrasyonu, görüntü işleme ve yazılım kontrolü üzerinde çalışıyorum.</p>
-        <div class="foot mono">Görüntü işleme · Kontrol</div>
+      <article class="scard dark" style="--i:1">
+        <div class="scard-l">
+          <div class="scard-top"><span class="tag">TEKNOFEST</span><span class="mono">2025 – devam</span></div>
+          <h3 class="display">Amfibi drone</h3>
+        </div>
+        <div class="scard-r">
+          <p>HALIC-X takımıyla geliştirdiğimiz, havada ve suda hareket edebilen hibrit bir drone. Sistem entegrasyonu, görüntü işleme ve yazılım kontrolü üzerinde çalışıyorum.</p>
+          <ul class="chips"><li>Görüntü işleme</li><li>Kontrol yazılımı</li><li>Sistem entegrasyonu</li></ul>
+          <span class="mono count">02 / 06</span>
+        </div>
       </article>
-      <article class="card">
-        <div class="top"><span class="tag">TÜBİTAK 2209-A</span><span class="mono">2023 – 2025</span></div>
-        <h3 class="h2">Mobil sağlık uygulaması</h3>
-        <p>Tüm arayüz ve kullanıcı deneyimini Figma'da tasarladım, duyarlı Flutter arayüzünü geliştirdim; yapay zekâ özellikleri ve Firebase altyapısının bağlanmasına katkı verdim.</p>
-        <div class="foot mono">Flutter · Firebase · Figma</div>
+      <article class="scard light" style="--i:2">
+        <div class="scard-l">
+          <div class="scard-top"><span class="tag">TÜBİTAK 2209-A</span><span class="mono">2023 – 2025</span></div>
+          <h3 class="display">Mobil sağlık uygulaması</h3>
+        </div>
+        <div class="scard-r">
+          <p>Tüm arayüz ve kullanıcı deneyimini Figma'da tasarladım, duyarlı Flutter arayüzünü geliştirdim; yapay zekâ özellikleri ve Firebase altyapısının bağlanmasına katkı verdim.</p>
+          <ul class="chips"><li>Flutter</li><li>Firebase</li><li>Figma</li></ul>
+          <span class="mono count">03 / 06</span>
+        </div>
       </article>
-      <article class="card">
-        <div class="top"><span class="tag">Staj</span><span class="mono">2025</span></div>
-        <h3 class="h2">Karaciğer hastalığı erken teşhis</h3>
-        <p>Erken teşhis için yapay zekâ tahmin modelleri çalıştıran bir web platformu; tıbbi karar desteği için veri analizleri ve görselleştirmelerle birlikte.</p>
-        <div class="foot mono">Makine öğrenmesi · Veri görselleştirme · Web</div>
+      <article class="scard dark" style="--i:3">
+        <div class="scard-l">
+          <div class="scard-top"><span class="tag">Staj</span><span class="mono">2025</span></div>
+          <h3 class="display">Karaciğer hastalığı erken teşhis</h3>
+        </div>
+        <div class="scard-r">
+          <p>Erken teşhis için yapay zekâ tahmin modelleri çalıştıran bir web platformu; tıbbi karar desteği için veri analizleri ve görselleştirmelerle birlikte.</p>
+          <ul class="chips"><li>Makine öğrenmesi</li><li>Veri görselleştirme</li><li>Web</li></ul>
+          <span class="mono count">04 / 06</span>
+        </div>
       </article>
-      <article class="card">
-        <div class="top"><span class="tag">Gömülü sistemler</span><span class="mono">2026</span></div>
-        <h3 class="h2">Mutlusan'da gömülü yazılım</h3>
-        <p>Gömülü yazılım geliştirip test ettim, yazılımı şirketin elektronik donanım sistemleriyle entegre ettim.</p>
-        <div class="foot mono">C · C++ · Donanım</div>
+      <article class="scard light" style="--i:4">
+        <div class="scard-l">
+          <div class="scard-top"><span class="tag">Gömülü sistemler</span><span class="mono">2026</span></div>
+          <h3 class="display">Mutlusan'da gömülü yazılım</h3>
+        </div>
+        <div class="scard-r">
+          <p>Gömülü yazılım geliştirip test ettim, yazılımı şirketin elektronik donanım sistemleriyle entegre ettim.</p>
+          <ul class="chips"><li>C</li><li>C++</li><li>Donanım</li></ul>
+          <span class="mono count">05 / 06</span>
+        </div>
       </article>
-      <article class="card">
-        <div class="top"><span class="tag">Yarışma</span><span class="mono">2025</span></div>
-        <h3 class="h2">Datathon ve IEEEXtreme</h3>
-        <p>BTK Akademi'nin Datathon 2025 veri yarışmasına ve IEEEXtreme 19.0 programlama yarışmasına katıldım.</p>
-        <div class="foot mono">Veri · Algoritmalar</div>
+      <article class="scard dark" style="--i:5">
+        <div class="scard-l">
+          <div class="scard-top"><span class="tag">Yarışma</span><span class="mono">2025</span></div>
+          <h3 class="display">Datathon ve IEEEXtreme</h3>
+        </div>
+        <div class="scard-r">
+          <p>BTK Akademi'nin Datathon 2025 veri yarışmasına ve IEEEXtreme 19.0 programlama yarışmasına katıldım.</p>
+          <ul class="chips"><li>Veri</li><li>Algoritmalar</li></ul>
+          <span class="mono count">06 / 06</span>
+        </div>
       </article>
     </div>
   </section>
@@ -303,6 +353,32 @@ footer button{background:none;border:0;color:var(--mint);font:inherit;cursor:poi
   try{var s=localStorage.getItem('rana-v2-theme');if(s)root.setAttribute('data-theme',s)}catch(e){}
   label();
   btn.addEventListener('click',function(){var n=dark()?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('rana-v2-theme',n)}catch(e){}label()});
+})();
+
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('.scard'));
+  if(!cards.length)return;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  cards.forEach(function(c){var d=document.createElement('div');d.className='shade';c.appendChild(d)});
+  if(reduce)return;
+  var ticking=false;
+  function update(){
+    ticking=false;
+    for(var i=0;i<cards.length-1;i++){
+      var c=cards[i],next=cards[i+1];
+      var r=c.getBoundingClientRect(),nr=next.getBoundingClientRect();
+      // how far the next card has slid over this one (0..1)
+      var p=(r.bottom-nr.top)/r.height;
+      p=Math.max(0,Math.min(1,p));
+      var left=cards.length-1-i;
+      c.style.transform='scale('+(1-p*Math.min(0.04*left,0.12))+')';
+      c.lastChild.style.opacity=(p*0.35).toFixed(3);
+    }
+  }
+  function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(update)}}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  update();
 })();
 </script>
 </body>
